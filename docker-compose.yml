@@ -39,7 +39,8 @@ services:
             - MYSQL_PASSWORD=${DB_PASSWORD}
             - MYSQL_ALLOW_EMPTY_PASSWORD=1
         volumes:
-            - 'db-vol:/var/lib/mysql'
+            - ./.docker/dbdata:/var/lib/mysql
+            - ./.docker/mysql/create-test-db.sh:/docker-entrypoint-initdb.d/create-test-db.sh
         networks:
             - app-net
         healthcheck:
@@ -74,6 +75,3 @@ services:
 networks:
     app-net:
         driver: bridge
-volumes:
-    db-vol:
-        driver: local
