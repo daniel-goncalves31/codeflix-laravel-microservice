@@ -34,4 +34,11 @@ class CategoryTest extends TestCase
         $category = new Category();
         $this->assertFalse($category->getIncrementing());
     }
+
+    public function test_casts()
+    {
+        $casts = ['deleted_at' => 'datetime', 'is_active' => 'boolean'];
+        $category = new Category();
+        $this->assertEquals($category->getCasts(), $casts);
+    }
 }
